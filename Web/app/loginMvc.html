@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="loginApp">
+
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="signin.css">
+</head>
+
+<body>
+	<div class="container" ng-controller="loginController">
+
+		<form id="loginForm" class="form-signin" ng-submit="signin()">
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<label for="inputEmail" class="sr-only">Email address</label>
+			<input type="text" id="username" name="username" class="form-control" placeholder="Email address" required autofocus ng-model="username">
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required ng-model="password">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" value="remember-me"> Remember me
+				</label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		</form>
+
+	</div>
+	<!-- /container -->
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script>
+		angular.module('loginApp', [])
+		.controller('loginController', ['$scope', '$http', 'loginSettings', function($scope, $http, loginSettings){
+			$scope.signin = function (){
+				//alert(loginSettings.loginUrl);
+//				var data = {
+//					username: $scope.username,
+//					password: $scope.password
+//				}
+//				$http.post(loginSettings.loginUrl, data)
+//				.then(function(response){
+//					alert("login ok")
+//				}, function(response){
+//					alert("login failed");
+//				});
+				
+				
+				var loginForm = document.getElementById("loginForm");
+				loginForm.action = loginSettings.loginUrl;	
+				loginForm.method = "POST";
+				loginForm.submit();
+			}
+						
+			
+		}])
+	</script>
+	<script src="settings/loginSettings.js"></script>
+</body>
+
+</html>

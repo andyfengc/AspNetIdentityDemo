@@ -58,7 +58,7 @@ namespace IdentityDemo.Controllers
                 };
                 await manager.CreateAsync(user, password);
             }
-            return Content("Create user successfully");
+            return Content("Create custom user successfully");
         }
 
         [Authorize]
